@@ -46,6 +46,24 @@ def compute_catmull(control_points, params: interpolation_tensor.InterpolationPa
         return compute_bezier([cp0, ip0, ip1, cp1], new_params)
 
 
+def compute_smooth(control_points, params: interpolation_tensor.InterpolationParams):
+    t = params.t * params.t * (3 - 2 * params.t)
+    new_params = interpolation_tensor.InterpolationParams(t, *params[1:])
+    return compute_linear(control_points, new_params)
+
+
+def compute_cosine(control_points, params: interpolation_tensor.InterpolationParams):
+    t = (1 - math.cos(params.t * math.pi)) / 2
+    new_params = interpolation_tensor.InterpolationParams(t, *params[1:])
+    return compute_linear(control_points, new_params)
+
+
+def compute_bounce(control_points, params: interpolation_tensor.InterpolationParams):
+    t = 1 - pow(1 - params.t, 2) * math.sin(params.t * math.pi * 4)
+    new_params = interpolation_tensor.InterpolationParams(t, *params[1:])
+    return compute_linear(control_points, new_params)
+
+
 if __name__ == '__main__':
     import turtle as tr
     import torch

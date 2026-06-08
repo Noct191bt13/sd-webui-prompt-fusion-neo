@@ -148,7 +148,7 @@ def parse_interpolation_exprs(prompt, stoppers):
 def parse_interpolation_function_name(prompt, stoppers):
     try:
         prompt, _ = parse_colon(prompt, stoppers)
-        function_names = ('linear', 'catmull', 'bezier', 'mean')
+        function_names = ('linear', 'catmull', 'bezier', 'mean', 'smooth', 'cosine', 'bounce')
         return parse_token(prompt, whitespace_tail_regex('|'.join(function_names), stoppers))
     except ValueError:
         return ParseResult(prompt=prompt, expr=None)

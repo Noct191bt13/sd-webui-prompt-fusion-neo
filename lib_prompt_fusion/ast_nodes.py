@@ -87,6 +87,9 @@ class InterpolationExpression:
             'linear': interpolation_functions.compute_linear,
             'bezier': interpolation_functions.compute_bezier,
             'catmull': interpolation_functions.compute_catmull,
+            'smooth': interpolation_functions.compute_smooth,
+            'cosine': interpolation_functions.compute_cosine,
+            'bounce': interpolation_functions.compute_bounce,
         }[self.__function_name]
 
         def steps_scale_t(conds, params: interpolation_tensor.InterpolationParams):
