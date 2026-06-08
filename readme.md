@@ -1,6 +1,6 @@
-# Prompt Fusion
+# Prompt Fusion Neo
 
-Prompt Fusion is an [auto1111 webui extension](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Developing-extensions) that adds more possibilities to the native prompt syntax. Among other additions, it allows to interpolate between the embeddings of different prompts, continuously:
+Prompt Fusion Neo is a [Forge Neo](https://github.com/nicku12345/sd-webui-forge-neo) extension that adds more possibilities to the native prompt syntax. Based on the original [prompt-fusion-extension](https://github.com/ljleb/prompt-fusion-extension) for A1111, it allows to interpolate between the embeddings of different prompts, continuously:
 
 ```
 # linear prompt interpolation
@@ -70,22 +70,16 @@ Interpolate using a bezier curve from `fireball monster` (step 0) to `dragon mon
 
 ![curve2](https://user-images.githubusercontent.com/32277961/214941229-2dccad78-f856-42bb-ae6b-16b65b273cda.gif)
 
-## Webui supported releases
+## Supported releases
 
-The following webui releases are officially supported:
-- `v1.0.0-pre`
-- `master` (there may be a slight lag for issues arising during quick a1111 webui updates)
+- SD WebUI Forge Neo
 
 ## Installation
-1. Visit the **Extensions** tab of Automatic's WebUI.
-2. Visit the **Available** subtab.
-3. Look for **Prompt Fusion**.
-4. Press the **Install** button.
-5. Wait for the webui to finish downloading the extension.
-6. Visit the **Installed** subtab.
-7. click on **Apply and restart UI**.
-
-Alternatively, instead of steps 6 and 7, you can restart the webui completely.
+1. Clone this repo into your `extensions/` folder:
+   ```
+   git clone https://github.com/Noct191bt13/sd-webui-prompt-fusion-neo.git
+   ```
+2. Restart the webui.
 
 ## Related Projects
 

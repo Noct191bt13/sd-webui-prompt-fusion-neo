@@ -1,5 +1,6 @@
 import gradio as gr
 from lib_prompt_fusion import hijacker, empty_cond, global_state, interpolation_tensor, prompt_parser as prompt_fusion_parser
+from lib_prompt_fusion.prompt_parser_compat import normalize_conditioning_arguments
 from modules import scripts, script_callbacks, prompt_parser, shared
 
 
@@ -26,7 +27,7 @@ def _hijacked_get_learned_conditioning(model, prompts, total_steps, *args, origi
     if not shared.opts.prompt_fusion_enabled:
         return original_function(model, prompts, total_steps, *args, **kwargs)
 
-    hires_steps, use_old_scheduling, *_ = args if args else (None, True)
+    (hires_steps, use_old_scheduling, normalized_args, normalized_kwargs) = normalize_conditioning_arguments(args, kwargs)
     is_hires = hires_steps is not None
     if is_hires:
         real_total_steps = hires_steps
@@ -48,7 +49,7 @@ def _hijacked_get_learned_conditioning(model, prompts, total_steps, *args, origi
         empty_conditioning = []
 
     flattened_prompts, consecutive_ranges = _get_flattened_prompts(tensor_builders, empty_conditioning)
-    flattened_schedules = original_function(model, flattened_prompts, total_steps, *args, **kwargs)
+    flattened_schedules = original_function(model, flattened_prompts, total_steps, *normalized_args, **normalized_kwargs)
 
     if isinstance(flattened_schedules[0][0].cond, dict): # sdxl
         CondWrapper = interpolation_tensor.DictCondWrapper
