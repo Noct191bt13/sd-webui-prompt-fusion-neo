@@ -9,6 +9,15 @@ Prompt Fusion Neo is a [Forge Neo](https://github.com/nicku12345/sd-webui-forge-
 # catmull-rom curve prompt interpolation
 [night light:magical forest:norvegian territory: 5, 15, 25:catmull]
 
+# smooth (ease-in-out) curve
+[night light:magical forest: 5, 15:smooth]
+
+# cosine curve (smoother at endpoints)
+[night light:magical forest: 5, 15:cosine]
+
+# bounce curve (creative overshoot)
+[night light:magical forest: 5, 15:bounce]
+
 # alternation interpolation
 [ufo|a strange sight:0.5]
 
